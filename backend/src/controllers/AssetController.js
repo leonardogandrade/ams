@@ -16,7 +16,7 @@ module.exports = {
     async ListAll(req,res){
         try{
             const { page } = req.query;
-            const response = await Asset.paginate({},{page , limit : 20});
+            const response = await Asset.paginate({},{sort : '-createdAt'},{page , limit : 20});
             return res.json(response);
         }catch(err){
             console.log(`Error while fetching assets from mongoDB: ${err}`);

@@ -1,0 +1,25 @@
+div .mainHeader{
+    padding : 2px;
+    background: #fafafa;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border: 1px solid #dadada;
+    border-radius: 2px;
+    display: flex;
+    margin: 0px;
+    justify-items: center;
+    justify-content: space-between;
+}
+div .mainHeader h2{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    margin-left: 30px;
+}
+div .mainHeader img{
+    margin: auto 20px;
+    width: 5%;
+    display: flex;
+    justify-items: center;
+    justify-content: space-between;
+}

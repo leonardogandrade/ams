@@ -6,7 +6,11 @@ const AssetSchema = mongoose.Schema({
     name : String,
     type : String,
     value : Number,
-    status : String
+    status : String,
+    coord : {
+        lat : String,
+        long : String,
+    },   
 },{
     timestamps : true,
 });
