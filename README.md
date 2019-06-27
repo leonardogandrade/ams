@@ -12,7 +12,8 @@
 
 > After clone this repository, you have navigate to backend folder and into the server_config.js file change the mongoHOST property.
 
-``` const config = {
+``` 
+const config = {
     port : 3002,
     mongoHost : '192.168.106.142:27017',
 }
