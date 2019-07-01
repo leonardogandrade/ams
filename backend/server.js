@@ -14,7 +14,7 @@ app.use(cors());
 //MongoDB
 try{
     mongoose.set('useFindAndModify', false);
-    mongoose.connect(`mongodb://${server_config.mongoHost}/assets`,{useNewUrlParser : true});
+    mongoose.connect(`mongodb://${server_config.mongoHost}/ams`,{useNewUrlParser : true});
     console.log('MongoDB connection was successfuly stablished.');
 }catch(err){
     console.log(`Error trying mongoDB connection - ${err}`);
