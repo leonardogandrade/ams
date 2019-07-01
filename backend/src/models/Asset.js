@@ -9,7 +9,7 @@ const AssetSchema = mongoose.Schema({
     status : String,
     coord : {
         lat : String,
-        long : String,
+        lon : String,
     },   
 },{
     timestamps : true,

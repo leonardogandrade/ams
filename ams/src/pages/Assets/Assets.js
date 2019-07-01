@@ -3,6 +3,8 @@ import config from '../../config/server_config.js';
 import amsApi from '../../services/amsApi';
 import io from 'socket.io-client';
 
+import imgMotor from '../../img/motor.png';
+
 import './Assets.css';
 
 class Assets extends Component{
@@ -38,7 +40,7 @@ class Assets extends Component{
             <div id='assetList'>
                 {this.state.docs.map(asset =>(
                     <article key={asset._id} className='assetBox'>
-                        <img src='https://image.flaticon.com/icons/svg/1870/1870892.svg' 
+                        <img src={imgMotor}
                         alt=''></img>
 
                         <div className='assetDescription'>
