@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema({
     role : String,
     department : String,
 },{
-    defaults : true,
+    timestamps : true,
 })
 
 module.exports = mongoose.model('User',UserSchema);

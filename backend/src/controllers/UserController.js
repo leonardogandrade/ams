@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const User = require('../models/User');
+const User = mongoose.model('User');
 
 module.exports = {
     async Create(req,res){
         try{
             const payload = await User.create(req.body);
+            console.log('user created successfully.');
             return res.json(payload);
         }catch(err){
             console.log(`Error while creating user - ${err}`);
@@ -32,11 +33,10 @@ module.exports = {
     async updateUser(req,res){
         try{
             const payload = await User.findByIdAndUpdate(req.params.id,req.body,{new : true});
+            console.log('user updated successfully.');
             return res.json(payload);
         }catch(err){
             console.log(`Error while updating UserById - ${err}`)
         }
     }
-    
-
 }

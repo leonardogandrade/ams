@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 const requireDir = require('require-dir');
 const cors = require('cors');
 const server_config = require('./src/config/server_config');
+const bodyParser = require('body-parser');
 
 const app = express();
-const server = require('http').createServer(app);
+
+
+
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-app.use(express.json());
-app.use(cors());
 
 //MongoDB
 try{
@@ -19,6 +21,13 @@ try{
 }catch(err){
     console.log(`Error trying mongoDB connection - ${err}`);
 }
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+//app.use(express.json());
+
+
 //Models
 requireDir('./src/models');
 
@@ -27,6 +36,8 @@ app.use((req,res,next) =>{
     req.io = io;
     next();
 })
+
+
 
 //Routes
 app.use('/api',require('./src/routes'));

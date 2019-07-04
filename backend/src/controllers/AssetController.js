@@ -5,8 +5,10 @@ module.exports = {
     //Creating asset record.
     async Create(req,res){
         try{
-            const payload = await Asset.create(req.body);
+            const payload = req.body
+            await Asset.create(req.body);
             req.io.emit('assetPost',payload);
+            console.log(payload);
             return res.json(payload);
         }catch(err){
             console.log(`Error while Creating assets: ${err}`);

@@ -33,7 +33,9 @@ export default class SimpleExample extends Component {
   state = {
     docs : [],
     zoom: 5,
-    centerMap : [-20.2,-40.2]
+    centerMap : [-20.2,-40.2],
+    minZoom : 5,
+    maxZoom : 18,
   }
 
   componentWillMount(){
@@ -57,19 +59,20 @@ export default class SimpleExample extends Component {
 
   render() {
     return (
-      <Map className="map" center={this.state.centerMap} zoom={this.state.zoom}>
+      <Map className="map" center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {this.state.docs.map(asset=>(
-            <Marker key={asset._id}
-            position={[asset.coord.lat,asset.coord.lon]}
-            icon={IconBlue}>
+            <Marker 
+              key={asset._id}
+              position={[asset.coord.lat,asset.coord.lon]}
+              icon={IconBlue}>
                 <Popup>
-                Name: {asset.name} <br/>
-                Status: {asset.status} <br/>
-                Type: {asset.type} <br/>
+                  Name: {asset.name} <br/>
+                  Status: {asset.status} <br/>
+                  Type: {asset.type} <br/>
                 </Popup>
             </Marker>
         ))}

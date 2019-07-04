@@ -1,0 +1,50 @@
+form#SignUpForm{
+    width: 100%;
+    max-width: 50%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form#SignUpForm label{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+form#SignUpForm .companyInput{
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+form#SignUpForm input{
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+form#SignUpForm select{
+    height: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;   
+}
+
+form#SignUpForm button{
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 5px; 
+    background: #2C82C9;
+    color : #fafafa;
+    font-weight: bold;
+    font-size: 14px;
+}
