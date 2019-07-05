@@ -44,7 +44,7 @@ export default class SimpleExample extends Component {
   }
 
   async loadData(){
-    const response = await amsApi.get('/asset');
+    const response = await amsApi.get('api/asset');
     const { docs } = response.data;
     this.setState({docs});
   }

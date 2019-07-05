@@ -19,7 +19,7 @@ class Assets extends Component{
     }
 
     loadAssets = async (page = 1) => {
-        const response = await amsApi.get('/asset');
+        const response = await amsApi.get('/api/asset');
         const { docs, ...info } = response.data;
         this.setState({
             docs,

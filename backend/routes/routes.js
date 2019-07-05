@@ -1,7 +1,11 @@
 const express = require('express');
 const routes = express.Router();
-const AssetController = require('./controllers/AssetController');
-const UserController = require('./controllers/UserController');
+const AssetController = require('../src/controllers/AssetController');
+const UserController = require('../src/controllers/UserController');
+const authMiddleware = require('../src/middleware/auth');
+
+//Middleware jwt any routes except login
+routes.use(authMiddleware);
 
 //Asset Routes
 routes.post('/asset',AssetController.Create);
@@ -10,6 +14,7 @@ routes.get('/asset/:id',AssetController.listById);
 
 //User Routes
 routes.post('/user',UserController.Create);
+//routes.post('/login/',UserController.signIn);
 routes.get('/user',UserController.listAll);
 routes.get('/user/:id',UserController.listById);
 routes.put('/user/:id',UserController.updateUser);

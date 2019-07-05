@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import './Login.css';
 import logoAms from '../../img/ams_logo.png';
+import { login } from '../../services/auth';
+import amsApi from '../../services/amsApi';
 
 class Login extends Component{
     state = {
@@ -9,20 +11,34 @@ class Login extends Component{
         password : '',
     }
     
-    handleSubmit = event =>{
-        alert(`user: ${this.state.user} - password: ${this.state.password}`);
+    handleSubmit = async event =>{
+        event.preventDefault();
+        const response = await amsApi.post('/login/signin',{
+            username : this.state.user,
+            password : this.state.password,
+        });
+        
+        if(response != null){
+            login(response.data.token);
+        }
+
+        console.log(response);
     }
 
     handleChange = event =>{
         this.setState({[event.target.name] : event.target.value});
     }
 
+    
+
     render(){
         return(
-            <div id='loginArea'>
-                <img src={logoAms} className='logoAms' alt=''></img>
-                <span className='logoDesc'>ASSET MANAGEMENT SYSTEM</span>
+            <div id='loginArea'>         
                 <form className='login' onSubmit={this.handleSubmit}>
+                <header>
+                    <img src={logoAms} alt=''></img>
+                    <span>ASSET MANAGEMENT SYSTEM</span>
+                </header>
                     <input 
                         type='text'
                         name='user'

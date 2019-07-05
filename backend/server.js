@@ -37,10 +37,9 @@ app.use((req,res,next) =>{
     next();
 })
 
-
-
 //Routes
-app.use('/api',require('./src/routes'));
+app.use('/api',require('./routes/routes'));
+app.use('/login',require('./routes/authenticate'));
 
 server.listen(server_config.port);
 console.log(`server is listenning ${server_config.port} on port.`)

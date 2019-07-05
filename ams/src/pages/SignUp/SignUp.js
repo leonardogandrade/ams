@@ -19,7 +19,7 @@ class SignUp extends Component{
 
     handleSubmit = async event =>{
             event.preventDefault();            
-            await amsApi.post('user',{
+            await amsApi.post('/api/user',{
                 'name' : this.state.name,
                 'username' : this.state.username,
                 'password' : this.state.password,
