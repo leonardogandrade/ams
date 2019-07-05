@@ -18,8 +18,9 @@ class Login extends Component{
             password : this.state.password,
         });
         
-        if(response != null){
+        if(response.data.token){
             login(response.data.token);
+            this.props.history.push('/dashboard');
         }
 
         console.log(response);
