@@ -8,7 +8,7 @@ const authMiddleware = require('../src/middleware/auth');
 routes.use(authMiddleware);
 
 //Asset Routes
-routes.post('/asset',AssetController.Create);
+//routes.post('/asset',AssetController.Create);
 routes.get('/asset',AssetController.ListAll);
 routes.get('/asset/:id',AssetController.listById);
 

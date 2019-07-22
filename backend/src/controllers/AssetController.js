@@ -1,5 +1,27 @@
 const mongoose = require('mongoose');
 const Asset = mongoose.model('Asset');
+const OneSignal = require('onesignal-node');
+require('dotenv').config();
+
+const myClient = new OneSignal.Client({      
+    userAuthKey: process.env.ONESIGNAL_USER_AUTH_KEY,      
+    app: { appAuthKey: process.env.ONESIGNAL_API_KEY, appId: process.env.ONESIGNAL_APP_ID }      
+}); 
+
+var firstNotification = new OneSignal.Notification({      
+    contents: {      
+        en: "Compressor de JF excedeu o threshold.",      
+        tr: "Test mesajı"      
+    },
+    template_id : "7247767a-7741-4793-97fd-7cd7a6e0c127",
+    include_player_ids : ["4d578444-c419-45f0-9b2f-87a212ab566a"]      
+}); 
+
+//firstNotification.postBody["included_segments"] = ["Active Users"];      
+firstNotification.postBody["excluded_segments"] = ["Banned Users"]; 
+
+firstNotification.postBody["data"] = {"Message": "Alert", "value": "Asset reached the threshold"};      
+//firstNotification.postBody["send_after"] = 'Thu Sep 24 2015 14:00:00 GMT-0700 (PDT)';
 
 module.exports = {
     //Creating asset record.
@@ -8,6 +30,17 @@ module.exports = {
             const payload = req.body
             await Asset.create(req.body);
             req.io.emit('assetPost',payload);
+
+            if(req.body.value > 10){
+                myClient.sendNotification(firstNotification, function (err, httpResponse,data) {      
+                    if (err) {      
+                        console.log('Something went wrong...');      
+                    } else {      
+                        console.log(data, httpResponse.statusCode);      
+                    }      
+                 });
+            }
+
             console.log(payload);
             return res.json(payload);
         }catch(err){

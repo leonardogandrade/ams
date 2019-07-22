@@ -29,12 +29,12 @@ var IconBlue = L.icon({
     popupAnchor:  [-10, -90] // point from which the popup should open relative to the iconAnchor
 });
 
-export default class SimpleExample extends Component {
+export default class AssetMap extends Component {
   state = {
     docs : [],
     zoom: 5,
     centerMap : [-20.2,-40.2],
-    minZoom : 5,
+    minZoom : 3,
     maxZoom : 18,
   }
 
@@ -70,6 +70,7 @@ export default class SimpleExample extends Component {
               position={[asset.coord.lat,asset.coord.lon]}
               icon={IconBlue}>
                 <Popup>
+                  Dispenser: {asset.mac} <br/>
                   Name: {asset.name} <br/>
                   Status: {asset.status} <br/>
                   Type: {asset.type} <br/>
