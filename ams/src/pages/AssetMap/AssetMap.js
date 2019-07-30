@@ -7,15 +7,37 @@ import './AssetMap.css'
 import io from 'socket.io-client';
 import config from '../../config/server_config';
 
-// var IconRed = L.icon({
-//     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-//     shadowUrl: 'leaf-shadow.png',
+var IconRed = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'leaf-shadow.png',
 
-//     iconSize:     [25, 41], // size of the icon
-//     shadowSize:   [50, 64], // size of the shadow
-//     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-//     shadowAnchor: [4, 62],  // the same for the shadow
-//     popupAnchor:  [-10, -90] // point from which the popup should open relative to the iconAnchor
+    iconSize:     [25, 41], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-10, -90] // point from which the popup should open relative to the iconAnchor
+});
+
+// var IconGrey = L.icon({
+//   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+//   shadowUrl: 'leaf-shadow.png',
+
+//   iconSize:     [25, 41], // size of the icon
+//   shadowSize:   [50, 64], // size of the shadow
+//   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [4, 62],  // the same for the shadow
+//   popupAnchor:  [-10, -90] // point from which the popup should open relative to the iconAnchor
+// });
+
+// var IconYellow = L.icon({
+//   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+//   shadowUrl: 'leaf-shadow.png',
+
+//   iconSize:     [25, 41], // size of the icon
+//   shadowSize:   [50, 64], // size of the shadow
+//   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [4, 62],  // the same for the shadow
+//   popupAnchor:  [-10, -90] // point from which the popup should open relative to the iconAnchor
 // });
 
 var IconBlue = L.icon({
@@ -64,8 +86,10 @@ export default class AssetMap extends Component {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {this.state.docs.map(asset=>(
-            <Marker 
+        {this.state.docs.map(asset=>{
+          if(asset.status === 'ok'){
+            return (
+              <Marker 
               key={asset._id}
               position={[asset.coord.lat,asset.coord.lon]}
               icon={IconBlue}>
@@ -76,7 +100,23 @@ export default class AssetMap extends Component {
                   Type: {asset.type} <br/>
                 </Popup>
             </Marker>
-        ))}
+            )
+          } else{
+            return(
+              <Marker 
+              key={asset._id}
+              position={[asset.coord.lat,asset.coord.lon]}
+              icon={IconRed}>
+                <Popup>
+                  Dispenser: {asset.mac} <br/>
+                  Name: {asset.name} <br/>
+                  Status: {asset.status} <br/>
+                  Type: {asset.type} <br/>
+                </Popup>
+            </Marker>
+            )
+          }
+        })}
       </Map>
     )
   }
