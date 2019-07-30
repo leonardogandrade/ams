@@ -61,5 +61,11 @@ module.exports = {
     async listById(req,res){
         const response = await Asset.findById(req.params.id);
         return res.json(response);
+    },
+
+    async countErrors(req,res){
+        const response = await Asset.find().countDocuments({status : 'error', mac : 'aaa1166'})
+        return res.json(response);
     }
+
 }

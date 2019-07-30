@@ -30,10 +30,10 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import './index.css'
 import LineChart from '../../components/Charts/LineChart';
-import AreaChart from '../../components/Charts/AreaChart';
+//import AreaChart from '../../components/Charts/AreaChart';
 import PieChart from '../../components/Charts/PieChart';
-import BarChart from '../../components/Charts/BarChart';
-import ComposedChart from '../../components/Charts/ComposedChart';
+//import BarChart from '../../components/Charts/BarChart';
+//import ComposedChart from '../../components/Charts/ComposedChart';
 
 const drawerWidth = 240;
 
@@ -223,17 +223,19 @@ export default function MiniDrawer() {
         <div className={classes.toolbar} />
         <div id='listReport'>
             <div className='lineReport1'>
-                <PieChart/>
                 <LineChart/>       
             </div>
-            <div className='lineReport2'>
+            <div classname='lineReport2'>
+              <PieChart/>
+            </div>
+            {/* <div className='lineReport2'>
                 <ComposedChart/>
                 <AreaChart/>       
             </div>
             <div className='lineReport2'>
                 <BarChart/>
                 <AreaChart/>       
-            </div>
+            </div> */}
         </div>
 
       </main>

@@ -12,6 +12,9 @@ routes.use(authMiddleware);
 routes.get('/asset',AssetController.ListAll);
 routes.get('/asset/:id',AssetController.listById);
 
+//Asset Error Reports
+routes.get('/assetError',AssetController.countErrors);
+
 //User Routes
 routes.post('/user',UserController.Create);
 //routes.post('/login/',UserController.signIn);

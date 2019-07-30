@@ -60,7 +60,7 @@ export default class AssetMap extends Component {
     maxZoom : 18,
   }
 
-  componentWillMount(){
+  componentDidMount(){
       this.RegisterSocket();
       this.loadData();
   }

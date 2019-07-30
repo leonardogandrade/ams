@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp/SignUp';
 import AssetMap from './pages/AssetMap/AssetMap';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
+import Simulation from './pages/Simulation';
 
 const PrivateRoute = ({component : Component, ...rest}) => (
     <Route 
@@ -31,6 +32,7 @@ function Routes(){
             <PrivateRoute path='/dashboard' component={Dashboard}/>
             <PrivateRoute path="/assetmap" component={AssetMap}/>
             <PrivateRoute path='/reports' component={Reports}/>
+            <PrivateRoute path='/simulation' component={Simulation}/>
         </Switch>
     )
 };
