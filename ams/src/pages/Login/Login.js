@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
 import './Login.css';
 import logoAms from '../../img/ams_logo.png';
+import logoThready from '../../img/logo_thready.jpg';
 import { login } from '../../services/auth';
 import amsApi from '../../services/amsApi';
 
@@ -22,8 +22,6 @@ class Login extends Component{
             login(response.data.token);
             this.props.history.push('/dashboard');
         }
-
-        console.log(response);
     }
 
     handleChange = event =>{
@@ -53,6 +51,11 @@ class Login extends Component{
                         onChange={this.handleChange}
                     />
                     <button type='submit'>Entrar</button>
+                    <footer>
+                        <span>Develped by </span>
+                        <img alt='' className='logoThready' src={logoThready}></img>
+                    </footer>
+
                 </form>
             </div>
         )

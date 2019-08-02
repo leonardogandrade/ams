@@ -212,7 +212,7 @@ export default function MiniDrawer() {
           <ListItemText primary='Reports'/>
         </ListItem>
 
-        <ListItem button component={Link} to='/asset'>
+        <ListItem button component={Link} to='/alerts'>
           <ListItemIcon>{<AlarmIcon />}</ListItemIcon>
           <ListItemText primary='Alerts'/>
         </ListItem>
@@ -225,7 +225,7 @@ export default function MiniDrawer() {
             <div className='lineReport1'>
                 <LineChart/>       
             </div>
-            <div classname='lineReport2'>
+            <div className='lineReport2'>
               <PieChart/>
             </div>
             {/* <div className='lineReport2'>

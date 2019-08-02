@@ -8,12 +8,14 @@ const myClient = new OneSignal.Client({
     app: { appAuthKey: process.env.ONESIGNAL_API_KEY, appId: process.env.ONESIGNAL_APP_ID }      
 }); 
 
+const city = '';
+
 var firstNotification = new OneSignal.Notification({      
     contents: {      
-        en: "Compressor de JF excedeu o threshold.",      
+        en: "Compressor de  excedeu o threshold.",      
         tr: "Test mesajı"      
     },
-    template_id : "7247767a-7741-4793-97fd-7cd7a6e0c127",
+    //template_id : "7247767a-7741-4793-97fd-7cd7a6e0c127",
     include_player_ids : ["4d578444-c419-45f0-9b2f-87a212ab566a"]      
 }); 
 
@@ -32,7 +34,15 @@ module.exports = {
             req.io.emit('assetPost',payload);
 
             if(req.body.value > 10){
-                myClient.sendNotification(firstNotification, function (err, httpResponse,data) {      
+                
+                myClient.sendNotification(new OneSignal.Notification({      
+                    contents: {      
+                        en: `Compressor de ${req.body.name} apresentou o status de ${req.body.status}. excedendo o threshold.`,      
+                        tr: "Test mesajı"      
+                    },
+                    //template_id : "7247767a-7741-4793-97fd-7cd7a6e0c127",
+                    include_player_ids : ["4d578444-c419-45f0-9b2f-87a212ab566a"]      
+                }), function (err, httpResponse,data) {      
                     if (err) {      
                         console.log('Something went wrong...');      
                     } else {      

@@ -2,10 +2,11 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { isAuthenticated } from './services/auth';
 
-import Asset from './pages/Assets/Assets';
+import Asset from './components/Assets/Assets';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import AssetMap from './pages/AssetMap/AssetMap';
+import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
 import Simulation from './pages/Simulation';
@@ -33,6 +34,7 @@ function Routes(){
             <PrivateRoute path="/assetmap" component={AssetMap}/>
             <PrivateRoute path='/reports' component={Reports}/>
             <PrivateRoute path='/simulation' component={Simulation}/>
+            <PrivateRoute path='/alerts' component={Alerts}/>
         </Switch>
     )
 };

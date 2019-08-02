@@ -1,8 +1,5 @@
-//import React, { PureComponent } from 'react';
-//import { PieChart, Pie, Sector } from 'recharts';
 import amsApi from '../../services/amsApi';
 import io from 'socket.io-client';
-import config from '../../config/server_config';
 
 import React, { PureComponent } from 'react';
 import {
@@ -28,7 +25,7 @@ export default class Example extends PureComponent {
   }
 
   async RegisterSocket(){
-    const socket = io(`${config.webSocketHost}`);
+    const socket = io(process.env.REACT_APP_BACKEND);
     socket.on('assetPost',newasset =>{
       this.setState({docs : [newasset,...this.state.docs]});
       this.LoadData();
@@ -37,7 +34,12 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <PieChart width={400} height={400}>
+      <PieChart 
+      width={400} height={250} 
+      margin={{
+        top: 20, right: 0, left: 0, bottom: 0,
+      }} 
+      >
         <Pie dataKey="value" isAnimationActive={false} data={this.state.docs} cx={200} cy={100} outerRadius={80} fill="#8884d8" label />
         <Tooltip />
       </PieChart>

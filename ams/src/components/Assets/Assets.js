@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import config from '../../config/server_config.js';
 import amsApi from '../../services/amsApi';
 import io from 'socket.io-client';
 
@@ -28,7 +27,7 @@ class Assets extends Component{
     }
 
     registerToSocket = () =>{
-        const socket = io(`${config.webSocketHost}`);
+        const socket = io(process.env.REACT_APP_BACKEND);
         socket.on('assetPost',newAsset =>{
             this.setState({docs : [newAsset, this.state.docs]});
             this.loadAssets();
