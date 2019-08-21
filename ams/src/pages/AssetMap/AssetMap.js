@@ -86,17 +86,21 @@ export default class AssetMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {this.state.docs.map(asset=>{
-          if(asset.status === 'parada'){
+          if(asset.status === 'inversor'){
             return (
               <Marker 
               key={asset._id}
               position={[asset.coord.lat,asset.coord.lon]}
               icon={IconGreen}>
                 <Popup key={asset._id}>
-                  ID: {asset.mac} <br/>
+                ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
                   Status: {asset.status} <br/>
                   Tipo: {asset.type} <br/>
+                  Última manutenção: {asset.lastRepair} <br/>
+                  Próxima manutenção: {asset.nextRepair} <br/>
+                  Temperatura: {asset.temp} <br/>
+                  Pressão: {asset.pression} <br/>
                 </Popup>
             </Marker>
             )
@@ -111,6 +115,10 @@ export default class AssetMap extends Component {
                   Localização: {asset.name} <br/>
                   Status: {asset.status} <br/>
                   Tipo: {asset.type} <br/>
+                  Última manutenção: {asset.lastRepair} <br/>
+                  Próxima manutenção: {asset.nextRepair} <br/>
+                  Temperatura: {asset.temp} <br/>
+                  Pressão: {asset.pression} <br/>
                 </Popup>
             </Marker>
             )
@@ -121,10 +129,14 @@ export default class AssetMap extends Component {
               position={[asset.coord.lat,asset.coord.lon]}
               icon={IconYellow}>
                 <Popup>
-                  ID: {asset.mac} <br/>
+                ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
                   Status: {asset.status} <br/>
                   Tipo: {asset.type} <br/>
+                  Última manutenção: {asset.lastRepair} <br/>
+                  Próxima manutenção: {asset.nextRepair} <br/>
+                  Temperatura: {asset.temp} <br/>
+                  Pressão: {asset.pression} <br/>
                 </Popup>
             </Marker>
             )
@@ -135,10 +147,14 @@ export default class AssetMap extends Component {
               position={[asset.coord.lat,asset.coord.lon]}
               icon={IconGrey}>
                 <Popup>
-                  ID: {asset.mac} <br/>
+                ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
                   Status: {asset.status} <br/>
                   Tipo: {asset.type} <br/>
+                  Última manutenção: {asset.lastRepair} <br/>
+                  Próxima manutenção: {asset.nextRepair} <br/>
+                  Temperatura: {asset.temp} <br/>
+                  Pressão: {asset.pression} <br/>
                 </Popup>
             </Marker>
             )

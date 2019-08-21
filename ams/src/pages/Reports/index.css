@@ -8,10 +8,10 @@
 }
 
 #listReport .lineReport2{
-    width: 100%;
-    max-width: 480px;
     display: flex;
-    margin-left: -30px;
+    width: 100%;
+    max-width: 87%; 
+    margin : 10px 0px 0px -65px;
     justify-content: space-between;
     justify-items: center;
     flex-direction: row;

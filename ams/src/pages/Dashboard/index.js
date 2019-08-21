@@ -29,6 +29,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SettingsIcon from '@material-ui/icons/Settings';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
 import AlarmIcon from '@material-ui/icons/Alarm';
+import PlayArrow from '@material-ui/icons/PlayArrow';
 
 const drawerWidth = 240;
 
@@ -141,7 +142,7 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-            
+
             <Button style={{marginLeft : '90%'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <AccountCircle color="disabled" style={{ fontSize: 42}}/>
             </Button>
@@ -208,6 +209,11 @@ export default function MiniDrawer() {
         <ListItem button component={Link} to='/alerts'>
           <ListItemIcon>{<AlarmIcon />}</ListItemIcon>
           <ListItemText primary='Alerts'/>
+        </ListItem>
+
+        <ListItem button component={Link} to='/simulation'>
+          <ListItemIcon>{<PlayArrow />}</ListItemIcon>
+          <ListItemText primary='Simulation'/>
         </ListItem>
           
         </List>

@@ -10,6 +10,7 @@ import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
 import Simulation from './pages/Simulation';
+import MapAlert from './pages/MapAlert';
 
 const PrivateRoute = ({component : Component, ...rest}) => (
     <Route 
@@ -35,6 +36,7 @@ function Routes(){
             <PrivateRoute path='/reports' component={Reports}/>
             <PrivateRoute path='/simulation' component={Simulation}/>
             <PrivateRoute path='/alerts' component={Alerts}/>
+            <PrivateRoute path='/mapalert' component={MapAlert}/>
         </Switch>
     )
 };

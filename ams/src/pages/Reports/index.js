@@ -34,7 +34,7 @@ import LineChart from '../../components/Charts/LineChart';
 import PieChart from '../../components/Charts/PieChart';
 //import BarChart from '../../components/Charts/BarChart';
 //import ComposedChart from '../../components/Charts/ComposedChart';
-
+import TableDetail from '../../components/TableDetail';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -227,6 +227,7 @@ export default function MiniDrawer() {
             </div>
             <div className='lineReport2'>
               <PieChart/>
+              <TableDetail/>
             </div>
             {/* <div className='lineReport2'>
                 <ComposedChart/>

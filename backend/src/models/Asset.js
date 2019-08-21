@@ -7,6 +7,11 @@ const AssetSchema = mongoose.Schema({
     type : String,  //
     value : Number,
     status : String,
+    lastRepair : String,
+    nextRepair : String,
+    hourmeter : Number,
+    pression : Number,
+    temp : Number,
     active : Boolean,
     coord : {
         lat : String,
