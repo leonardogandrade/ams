@@ -86,7 +86,7 @@ export default class AssetMap extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {this.state.docs.map(asset=>{
-          if(asset.status === 'inversor'){
+          if(asset.status === 'ok'){
             return (
               <Marker 
               key={asset._id}
@@ -104,7 +104,7 @@ export default class AssetMap extends Component {
                 </Popup>
             </Marker>
             )
-          } else if(asset.status === 'aquecimento'){
+          } else if(asset.status === 'error'){
             return(
               <Marker
               key={asset._id}
@@ -122,7 +122,7 @@ export default class AssetMap extends Component {
                 </Popup>
             </Marker>
             )
-          } else if(asset.status === 'manutencao'){
+          } else if(asset.status === 'warning'){
             return(
               <Marker
               key={asset._id}              
@@ -140,7 +140,7 @@ export default class AssetMap extends Component {
                 </Popup>
             </Marker>
             )
-          } else if(asset.status === 'desligamento'){
+          } else if(asset.status === 'inactive'){
             return(
               <Marker 
               key={asset._id}

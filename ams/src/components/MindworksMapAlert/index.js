@@ -81,12 +81,19 @@ class MindworksMapAlert extends Component{
                 this.setState({sala4 : {...this.state.sala4,backgroundColor : "#acacac"}})
                 this.setState({sala5 : {...this.state.sala5,backgroundColor : "#acacac"}})
             }else if(newAsset.mac === 'aaa1122'){
-                this.setState({sala1 : {...this.state.sala1,backgroundColor : "#54ebd2"}})
+                this.setState({sala1 : {...this.state.sala1,backgroundColor : "#acacac"}})
                 this.setState({sala2 : {...this.state.sala2,backgroundColor : "#acacac"}})
                 this.setState({sala3 : {...this.state.sala3,backgroundColor : "#acacac"}})
+                this.setState({sala4 : {...this.state.sala4,backgroundColor : "#54ebd2"}})
+                this.setState({sala5 : {...this.state.sala5,backgroundColor : "#acacac"}})
+            }else if(newAsset.mac === 'aaa1123'){
+                this.setState({sala1 : {...this.state.sala1,backgroundColor : "#acacac"}})
+                this.setState({sala2 : {...this.state.sala2,backgroundColor : "#acacac"}})
+                this.setState({sala3 : {...this.state.sala3,backgroundColor : "#54ebd2"}})
                 this.setState({sala4 : {...this.state.sala4,backgroundColor : "#acacac"}})
                 this.setState({sala5 : {...this.state.sala5,backgroundColor : "#acacac"}})
             }
+            
             //this.loadData();
         });
     }
