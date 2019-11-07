@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import amsApi from '../../services/amsApi';
 import io from 'socket.io-client';
 
-import imgMotor from '../../img/motor.png';
+//import imgMotor from '../../img/motor.png';
+import imgDoctor from '../../img/doctor.png';
 
 import './Assets.css';
 
@@ -39,7 +40,7 @@ class Assets extends Component{
             <div id='assetList'>
                 {this.state.docs.map(asset =>(
                     <article key={asset._id} className='assetBox'>
-                        <img src={imgMotor}
+                        <img src={imgDoctor}
                         alt=''></img>
 
                         <div className='assetDescription'>

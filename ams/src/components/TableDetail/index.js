@@ -73,8 +73,10 @@ export default class TableDetail extends Component{
                         <StyledTableCell align="right">Cidade</StyledTableCell>
                         <StyledTableCell align="right">Temperatura</StyledTableCell>
                         <StyledTableCell align="right">Pressão</StyledTableCell>
-                        <StyledTableCell align="right">Última man.</StyledTableCell>
-                        <StyledTableCell align="right">Próxima man.</StyledTableCell>
+                        <StyledTableCell align="right">Status</StyledTableCell>
+                        <StyledTableCell align="right">Ultima Manutenção</StyledTableCell>
+                        <StyledTableCell align="right">Proxima Manutenção</StyledTableCell>
+                        
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -84,8 +86,10 @@ export default class TableDetail extends Component{
                         <StyledTableCell align="right">{asset.name}</StyledTableCell>
                         <StyledTableCell align="right">{asset.temp}</StyledTableCell>
                         <StyledTableCell align="right">{asset.pression}</StyledTableCell>
-                        <StyledTableCell align="right">{asset.lastRepair}</StyledTableCell>
-                        <StyledTableCell align="right">{asset.nextRepair}</StyledTableCell>
+                        <StyledTableCell align="right">{asset.status}</StyledTableCell>
+                        <StyledTableCell align="right">22/10/2018</StyledTableCell>
+                        <StyledTableCell align="right">15/09/2020</StyledTableCell>
+                        
                         </StyledTableRow>
                     ))}
                     </TableBody>
