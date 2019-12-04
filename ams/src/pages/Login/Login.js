@@ -52,7 +52,7 @@ class Login extends Component{
                     />
                     <button type='submit'>Entrar</button>
                     <footer>
-                        <span>Develped by </span>
+                        <span>Developed by </span>
                         <img alt='' className='logoThready' src={logoThready}></img>
                     </footer>
 
