@@ -1,13 +1,13 @@
 # AMS - Asset Management System
 
 ## Login
-![GitHub Logo](https://github.com/leonardogandrade/ams/blob/master/etc/login.png)
+![GitHub Logo](https://github.com/leonardogandrade/ams/blob/material_design/etc/login.png)
 
 ## Dasboard 
-![GitHub Logo](https://github.com/leonardogandrade/ams/blob/master/etc/dashboard.png)
+![GitHub Logo](https://github.com/leonardogandrade/ams/blob/material_design/etc/dashboard.png)
 
 ## Reports
-![GitHub Logo](https://github.com/leonardogandrade/ams/blob/master/etc/reports.png)
+![GitHub Logo](https://github.com/leonardogandrade/ams/blob/material_design/etc/dashboard.png)
 
 ## Abstract
 
