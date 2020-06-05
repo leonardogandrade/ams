@@ -9,6 +9,8 @@ import AssetMap from './pages/AssetMap/AssetMap';
 import Alerts from './pages/Alerts';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
+import ReportsPowerBi from './pages/ReportsPowerBi';
+import ReportsDashboard from './pages/ReportsDashboard';
 import Simulation from './pages/Simulation';
 import MapAlert from './pages/MapAlert';
 
@@ -34,6 +36,8 @@ function Routes(){
             <PrivateRoute path='/dashboard' component={Dashboard}/>
             <PrivateRoute path="/assetmap" component={AssetMap}/>
             <PrivateRoute path='/reports' component={Reports}/>
+            <PrivateRoute path='/ReportsDashboard' component={ReportsDashboard}/>
+            <PrivateRoute path='/ReportsPowerBi' component={ReportsPowerBi}/>
             <PrivateRoute path='/simulation' component={Simulation}/>
             <PrivateRoute path='/alerts' component={Alerts}/>
             <PrivateRoute path='/mapalert' component={MapAlert}/>

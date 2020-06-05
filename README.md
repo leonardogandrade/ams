@@ -1,5 +1,14 @@
 # AMS - Asset Management System
 
+## Login
+![GitHub Logo](https://github.com/leonardogandrade/ams/blob/master/etc/login.png)
+
+## Dasboard 
+![GitHub Logo](https://github.com/leonardogandrade/ams/blob/master/etc/dashboard.png)
+
+## Reports
+![GitHub Logo](https://github.com/leonardogandrade/ams/blob/master/etc/reports.png)
+
 ## Abstract
 
 > This project aimed to provide a system to monitor assets in real time.

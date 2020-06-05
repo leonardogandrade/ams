@@ -22,16 +22,24 @@ import PieChartIcon from '@material-ui/icons/PieChart';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { logout } from '../../services/auth';
-import AssetMap from '../AssetMap/AssetMap';
 import { Link } from 'react-router-dom';
 //Charts
 import HomeIcon from '@material-ui/icons/Home';
+import AlarmIcon from '@material-ui/icons/Alarm';
 import SettingsIcon from '@material-ui/icons/Settings';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
-import AlarmIcon from '@material-ui/icons/Alarm';
-import PlayArrow from '@material-ui/icons/PlayArrow';
+import './index.css'
+// import LineChart from '../../components/Charts/LineChart';
+//import AreaChart from '../../components/Charts/AreaChart';
+// import PieChart from '../../components/Charts/PieChart';
+//import BarChart from '../../components/Charts/BarChart';
+//import ComposedChart from '../../components/Charts/ComposedChart';
+// import TableDetail from '../../components/TableDetail';
+import chartImg from '../../img/charts.png';
+import powerBiImg from '../../img/powerbi.png';
 
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -142,7 +150,7 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-
+            
             <Button style={{marginLeft : '90%'}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 <AccountCircle color="disabled" style={{ fontSize: 42}}/>
             </Button>
@@ -185,14 +193,17 @@ export default function MiniDrawer() {
                 <ListItemIcon>{<HomeIcon />}</ListItemIcon>
                 <ListItemText primary='Home'/>
             </ListItem>
+
             <ListItem button >
                 <ListItemIcon>{<MailIcon />}</ListItemIcon>
                 <ListItemText primary='Alerts'/>
             </ListItem>
+
             <ListItem button >
                 <ListItemIcon>{<SettingsIcon />}</ListItemIcon>
                 <ListItemText primary='Settings'/>
             </ListItem>
+
             <ListItem button >
                 <ListItemIcon>{<VideoCallIcon />}</ListItemIcon>
                 <ListItemText primary='Video'/>
@@ -200,27 +211,42 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
- 
-        <ListItem button component={Link} to='/ReportsDashboard'>
+        <ListItem button component={Link} to='/reports'>
           <ListItemIcon>{<PieChartIcon />}</ListItemIcon>
           <ListItemText primary='Reports'/>
         </ListItem>
- 
+
         <ListItem button component={Link} to='/alerts'>
           <ListItemIcon>{<AlarmIcon />}</ListItemIcon>
           <ListItemText primary='Alerts'/>
-        </ListItem>
-
-        <ListItem button component={Link} to='/simulation'>
-          <ListItemIcon>{<PlayArrow />}</ListItemIcon>
-          <ListItemText primary='Simulation'/>
         </ListItem>
           
         </List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <AssetMap/>
+        <div id='listReport'>
+            <div className='lineReport1'>
+               <Link to='/reports'>
+                  <img alt='' src={chartImg}/>
+               </Link>
+               <Link to='/ReportsPowerBi'>
+                  <img alt='' src={powerBiImg}/>
+               </Link>
+            </div>
+            <div className='lineReport2'>
+            {/* <h1>Reports 3</h1> */}
+            </div>
+            {/* <div className='lineReport2'>
+                <ComposedChart/>
+                <AreaChart/>       
+            </div>
+            <div className='lineReport2'>
+                <BarChart/>
+                <AreaChart/>       
+            </div> */}
+        </div>
+
       </main>
     </div>
   );
