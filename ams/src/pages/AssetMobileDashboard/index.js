@@ -22,7 +22,7 @@ import PieChartIcon from '@material-ui/icons/PieChart';
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { logout } from '../../services/auth';
-import AssetMap from '../AssetMap/AssetMap';
+import AssetMobile from '../../components/AssetMobile';
 import { Link } from 'react-router-dom';
 //Charts
 import HomeIcon from '@material-ui/icons/Home';
@@ -186,8 +186,8 @@ export default function MiniDrawer() {
                 <ListItemIcon>{<HomeIcon />}</ListItemIcon>
                 <ListItemText primary='Home'/>
             </ListItem>
-            <ListItem button component={Link} to='/AssetMobile'>
-                <ListItemIcon>{<DriveEtaIcon />}</ListItemIcon>
+            <ListItem button component={Link} to='/assetmobile'>
+                <ListItemIcon>{<DriveEtaIcon/>}</ListItemIcon>
                 <ListItemText primary='Mobile'/>
             </ListItem>
             <ListItem button >
@@ -225,7 +225,7 @@ export default function MiniDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <AssetMap/>
+        <AssetMobile/>
       </main>
     </div>
   );

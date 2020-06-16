@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup,Polyline } from 'react-leaflet'
 import L from 'leaflet';
+import '../AssetRealTime/node_modules/leaflet/dist/leaflet.css';
 import amsApi from '../../services/amsApi';
 import './AssetMap.css'
 import io from 'socket.io-client';
@@ -88,9 +89,9 @@ export default class AssetMap extends Component {
           if(asset.status === 'ok'){
             return (
               <Marker 
-                key={asset._id}
-                position={[asset.coord.lat,asset.coord.lon]}
-                icon={IconGreen}>
+              key={asset._id}
+              position={[asset.coord.lat,asset.coord.lon]}
+              icon={IconGreen}>
                 <Popup key={asset._id}>
                 ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
@@ -101,14 +102,14 @@ export default class AssetMap extends Component {
                   Temperatura: {asset.temp} <br/>
                   Pressão: {asset.pression} <br/>
                 </Popup>
-              </Marker>
+            </Marker>
             )
           } else if(asset.status === 'error'){
             return(
               <Marker
-                key={asset._id}
-                position={[asset.coord.lat,asset.coord.lon]}
-                icon={IconRed}>
+              key={asset._id}
+              position={[asset.coord.lat,asset.coord.lon]}
+              icon={IconRed}>
                 <Popup>
                   ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
@@ -119,14 +120,14 @@ export default class AssetMap extends Component {
                   Temperatura: {asset.temp} <br/>
                   Pressão: {asset.pression} <br/>
                 </Popup>
-              </Marker>
+            </Marker>
             )
           } else if(asset.status === 'warning'){
             return(
               <Marker
-                key={asset._id}              
-                position={[asset.coord.lat,asset.coord.lon]}
-                icon={IconYellow}>
+              key={asset._id}              
+              position={[asset.coord.lat,asset.coord.lon]}
+              icon={IconYellow}>
                 <Popup>
                 ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
@@ -137,14 +138,14 @@ export default class AssetMap extends Component {
                   Temperatura: {asset.temp} <br/>
                   Pressão: {asset.pression} <br/>
                 </Popup>
-              </Marker>
+            </Marker>
             )
           } else if(asset.status === 'inactive'){
             return(
               <Marker 
-                key={asset._id}
-                position={[asset.coord.lat,asset.coord.lon]}
-                icon={IconGrey}>
+              key={asset._id}
+              position={[asset.coord.lat,asset.coord.lon]}
+              icon={IconGrey}>
                 <Popup>
                 ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
@@ -155,7 +156,7 @@ export default class AssetMap extends Component {
                   Temperatura: {asset.temp} <br/>
                   Pressão: {asset.pression} <br/>
                 </Popup>
-              </Marker>
+            </Marker>
             )
           }
           return 0;

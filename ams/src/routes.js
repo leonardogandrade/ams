@@ -13,6 +13,7 @@ import ReportsPowerBi from './pages/ReportsPowerBi';
 import ReportsDashboard from './pages/ReportsDashboard';
 import Simulation from './pages/Simulation';
 import MapAlert from './pages/MapAlert';
+import AssetMobile from './pages/AssetMobileDashboard';
 
 const PrivateRoute = ({component : Component, ...rest}) => (
     <Route 
@@ -41,6 +42,7 @@ function Routes(){
             <PrivateRoute path='/simulation' component={Simulation}/>
             <PrivateRoute path='/alerts' component={Alerts}/>
             <PrivateRoute path='/mapalert' component={MapAlert}/>
+            <PrivateRoute path='/assetmobile' component={AssetMobile}/>
         </Switch>
     )
 };

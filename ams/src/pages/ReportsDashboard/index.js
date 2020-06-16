@@ -25,6 +25,7 @@ import { logout } from '../../services/auth';
 import { Link } from 'react-router-dom';
 //Charts
 import HomeIcon from '@material-ui/icons/Home';
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SettingsIcon from '@material-ui/icons/Settings';
 import VideoCallIcon from '@material-ui/icons/VideoCall';
@@ -192,6 +193,10 @@ export default function MiniDrawer() {
             <ListItem button component={Link} to='/dashboard'>
                 <ListItemIcon>{<HomeIcon />}</ListItemIcon>
                 <ListItemText primary='Home'/>
+            </ListItem>
+            <ListItem button component={Link} to='/assetmobile'>
+                <ListItemIcon>{<DriveEtaIcon />}</ListItemIcon>
+                <ListItemText primary='Mobile'/>
             </ListItem>
 
             <ListItem button >
