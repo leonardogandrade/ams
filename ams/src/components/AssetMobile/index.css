@@ -1,4 +1,9 @@
 .map{
-    height: 500px;
+    height: 400px;
     width: 100%;
+}
+
+.popupIcon{
+    width: 80px;
+    height: 80px;
 }

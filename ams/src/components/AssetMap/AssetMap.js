@@ -79,7 +79,7 @@ export default class AssetMap extends Component {
 
   render() {
     return (
-      <Map  className="map" center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
+      <Map  className="map"  style={{height : '100%'}} center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -91,7 +91,7 @@ export default class AssetMap extends Component {
                 key={asset._id}
                 position={[asset.coord.lat,asset.coord.lon]}
                 icon={IconGreen}>
-                <Popup key={asset._id}>
+                <Popup>
                 ID: {asset.mac} <br/>
                   Localização: {asset.name} <br/>
                   Status: {asset.status} <br/>

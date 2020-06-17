@@ -27,7 +27,15 @@ class Login extends Component{
     handleChange = event =>{
         this.setState({[event.target.name] : event.target.value});
     }
-    
+
+
+    componentDidMount(){
+        if(localStorage.getItem('amsTokenKey')){
+            console.log('logado');
+            this.props.history.push('/dashboard')
+        } 
+    }
+
     render(){
         return(
             <div id='loginArea'>         

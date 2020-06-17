@@ -5,10 +5,13 @@ import 'leaflet/dist/leaflet.css';
 import amsApi from '../../services/amsApi';
 import './index.css'
 import io from 'socket.io-client';
+import MarkerIcon from '../../img/markerBlue.png';
+import carIcon from '../../img/car.png';
 
 var Icon = L.icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-    shadowUrl: 'leaf-shadow.png',
+    //iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    iconUrl : MarkerIcon,
+    //shadowUrl: 'leaf-shadow.png',
 
     iconSize:     [25, 41], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
@@ -19,7 +22,7 @@ var Icon = L.icon({
 
 export default class AssetMobile extends Component {
   state = {
-    docs : [],
+    data : [],
     zoom: 5,
     centerMap : [-20.2,-40.2],
     minZoom : 3,
@@ -32,29 +35,27 @@ export default class AssetMobile extends Component {
   }
 
   async loadData(){
-    const response = await amsApi.get('api/asset');
-    const { docs } = response.data;
-    this.setState({docs});
+    const response = await amsApi.get('api/mobileassets');
+    this.setState({data: response.data});
   }
 
   RegisterSocket(){
       const socket = io(process.env.REACT_APP_BACKEND);
       socket.on('assetPost',newAsset =>{
-          this.setState({docs : [newAsset,...this.state.docs]});
+          this.setState({data : [newAsset,...this.state.data]});
           this.loadData();
       })
   }
 
   render() {
     return (
-      <Map  className="map" center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
+      <Map  className="map" style={{height : '100%'}} center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      {this.state.docs.map((asset,index,array)=>{
-          const last = array.length
-
+      {this.state.data.map((asset,index,array)=>{
+          console.log(array.length,index)
           if(index < (array.length -1)){
             return (
                 <Polyline 
@@ -62,9 +63,6 @@ export default class AssetMobile extends Component {
                   smoothFactor={2}
                   color='#d829d5'
                   positions={[[array[index].coord.lat,array[index].coord.lon],[array[index +1].coord.lat,array[index +1].coord.lon]]}>
-                  
-                  
-
                 </Polyline>
             )
           }else{
@@ -73,8 +71,16 @@ export default class AssetMobile extends Component {
                 key={index}
                 position={[array[0].coord.lat,array[0].coord.lon]}
                 icon={Icon}>
-                <Popup key={asset._id}>
-                ID: {asset.mac} <br/>
+                <Popup 
+                  key={asset._id}>
+                  <img
+                    src={carIcon}
+                    width="70"
+                    height="70"
+                    alt=''
+                  />
+                  <br/>
+                  <a href={`/assetmobile/${asset._id}`}>ID: {asset.mac}</a> <br/>
                   Localização: {asset.name} <br/>
                   Status: {asset.status} <br/>
                   Tipo: {asset.type} <br/>
