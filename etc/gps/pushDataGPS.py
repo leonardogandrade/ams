@@ -25,7 +25,7 @@ def speedGen():
 
 def pushData(i):
     #payload = '{' + '\"latitude\":' + str(array[i][0]) + ',' + '\"longitude\":' + str(array[i][1]) + ',' + '\"status\":' + '\"ok\"' + ',' + '\"temperature\":' + str(speedGen() + 20) + ',' + '\"speed\":' + str(speedGen()) +'}'
-    payload = {"mac" : "aa1984",'name' : 'carro 01', 'type' : 'car',"value" : 8,"active" : 1  ,"status" : "ok", "lastRepair" : "14/02/2020", "nextRepair" : "26/09/2020","temp" : speedGen() + 20, "pression" : speedGen() +300 ,"coord" : { "lat" : str(array[i][0]),"lon" : str(array[i][1]) } }
+    payload = {"mac" : "aa1983",'name' : 'carro 01', 'type' : 'car',"value" : 8,"active" : 1  ,"status" : "ok", "lastRepair" : "14/02/2020", "nextRepair" : "26/09/2020","temp" : speedGen() + 20, "pression" : speedGen() +300 ,"coord" : { "lat" : str(array[i][0]),"lon" : str(array[i][1]) } }
     req.post(api,json=payload)
     
 starttime = time.time()

@@ -27,6 +27,7 @@ export default class AssetMobile extends Component {
     centerMap : [-20.2,-40.2],
     minZoom : 3,
     maxZoom : 18,
+    MAC_ASSET_FOR_SEARCH : 'aa1983'
   }
 
   componentDidMount(){
@@ -35,15 +36,17 @@ export default class AssetMobile extends Component {
   }
 
   async loadData(){
-    const response = await amsApi.get('api/mobileassets');
+    const response = await amsApi.post(`api/mobileassets/${this.state.MAC_ASSET_FOR_SEARCH}`);
     this.setState({data: response.data});
   }
 
   RegisterSocket(){
       const socket = io(process.env.REACT_APP_BACKEND);
       socket.on('assetPost',newAsset =>{
-          this.setState({data : [newAsset,...this.state.data]});
+          if(newAsset.mac === this.state.MAC_ASSET_FOR_SEARCH){
+            this.setState({data : [newAsset,...this.state.data]});
           this.loadData();
+          }
       })
   }
 
@@ -55,7 +58,7 @@ export default class AssetMobile extends Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
       {this.state.data.map((asset,index,array)=>{
-          console.log(array.length,index)
+          //console.log(array.length,index)
           if(index < (array.length -1)){
             return (
                 <Polyline 

@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const Login = require('../src/controllers/LoginController');
-const AssetController = require('../src/controllers/AssetController');
+const AssetController = require('../src/controllers/AssetLogController');
 
 routes.post('/signin',Login.signIn);
 routes.post('/asset',AssetController.Create);

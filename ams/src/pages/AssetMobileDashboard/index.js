@@ -8,6 +8,7 @@ export default function AssetMobileDashboard() {
       <DashboardLayout/>
       <div className='dashboardMap'>
         <AssetMobile/>
+        
       </div>
     </div>
     
