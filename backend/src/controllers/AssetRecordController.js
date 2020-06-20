@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { create } = require('../models/AssetRecord');
 const AssetRecord = require('../models/AssetRecord');
+const { listAll } = require('./UserController');
 const AssetRecordController = mongoose.model('AssetRecord');
 
 module.exports = {
@@ -9,4 +10,10 @@ module.exports = {
         console.log(payload);
         res.json(payload);
     },
+    async listAll(req,res){
+        const response = await AssetRecord.find();
+        console.log(response);
+        res.json(response);
+    },
+
 }
