@@ -14,6 +14,7 @@ import ReportsDashboard from './components/ReportsDashboard';
 import Simulation from './pages/Simulation';
 import MapAlert from './pages/MapAlert';
 import AssetMobileDashboard from './pages/AssetMobileDashboard';
+import Settings from './pages/Settings';
 
 const PrivateRoute = ({component : Component, ...rest}) => (
     <Route 
@@ -43,6 +44,7 @@ function Routes(){
             <PrivateRoute path='/alerts' component={Alerts}/>
             <PrivateRoute path='/mapalert' component={MapAlert}/>
             <PrivateRoute path='/assetmobile' component={AssetMobileDashboard}/>
+            <PrivateRoute path='/settings' component={Settings}/>
         </Switch>
     )
 };

@@ -196,10 +196,12 @@ export default function Dashboard() {
                 <ListItemIcon>{<MailIcon />}</ListItemIcon>
                 <ListItemText primary='Alerts'/>
             </ListItem>
-            <ListItem button >
+
+            <ListItem button component={Link} to='/settings'>
                 <ListItemIcon>{<SettingsIcon />}</ListItemIcon>
                 <ListItemText primary='Settings'/>
             </ListItem>
+
             <ListItem button >
                 <ListItemIcon>{<VideoCallIcon />}</ListItemIcon>
                 <ListItemText primary='Video'/>
