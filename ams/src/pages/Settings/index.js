@@ -61,7 +61,7 @@ export default function Settings(){
       <Button variant="contained"
               startIcon={<People/>} 
               style={{paddingLeft: 13, textDecoration: 'none'}}
-              component={Link} to=''>
+              component={Link} to='/signup'>
         {title.access}
       </Button>
       <Button variant="contained" 
