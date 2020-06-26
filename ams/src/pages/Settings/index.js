@@ -79,7 +79,7 @@ export default function Settings(){
       <Button variant="contained" 
               startIcon={<DevicesOther/>} 
               style={{paddingLeft: 13, textDecoration: 'none'}}
-              component={Link} to=''>
+              component={Link} to='/devices'>
         {title.devices}
       </Button>
 
