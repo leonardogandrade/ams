@@ -69,7 +69,6 @@ export default function Login(){
         if (reason === 'clickaway') {
           return;
         }
-    
         setOpen(false);
     };
 

@@ -23,6 +23,7 @@ routes.get('/assetError',AssetLogController.countErrors);
 //####### Devices ROUTES #######
 routes.post('/devices',DevicesController.create);
 routes.get('/devices',DevicesController.listAll);
+routes.post('/devices/:code',DevicesController.addDeliver);
 
 //####### DevicesType ROUTES #######
 routes.post('/devicestype',DevicesTypeController.create);

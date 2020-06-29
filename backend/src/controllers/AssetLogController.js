@@ -83,7 +83,7 @@ module.exports = {
     async listByMac(req,res){
         const mac = req.params.mac;
         const response = await AssetLog.find({mac}).sort('-createdAt');
-        console.log(response);
+        //console.log(response);
         res.json(response);
     },
 

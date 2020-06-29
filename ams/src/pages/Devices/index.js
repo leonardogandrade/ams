@@ -1,8 +1,20 @@
-import React from 'react';
-import {Switch,Container,Paper,makeStyles,Grid,Button,CssBaseline,TextField,Select,MenuItem,FormControl,InputLabel,FormControlLabel, Typography} from '@material-ui/core';
+import React, { useState } from 'react';
+import {Snackbar,Switch,Container,Paper,makeStyles,Grid,Button,CssBaseline,TextField,Select,MenuItem,FormControl,InputLabel,FormControlLabel, Typography} from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import DashnoardLayout from '../../components/DashboardLayout';
+import api from '../../services/amsApi';
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+  
 const useStyles = makeStyles(theme =>({
+    root: {
+        width: '100%',
+        '& > * + *': {
+          marginTop: theme.spacing(2),
+        },
+    },
     paper : {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(3),
@@ -26,14 +38,39 @@ const useStyles = makeStyles(theme =>({
 }))
 
 export default function Devices(){
-    const [active, setActive] = React.useState({
-        active: true,
-      });
+    const [active, setActive] = useState(true);
+    const [name,setName] = useState('');
+    const [company,setCompany] = useState('');
+    const [type,setType] = useState('');
+    const [model,setModel] = useState('');
+    const [openAlert, setOpenAlert] = React.useState(false);
+
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+        return;
+        }
+        setOpenAlert(false);
+    };
     
-      const handleChange = (event) => {
-        setActive({ ...active, [event.target.name]: event.target.checked });
-        
-      };
+    const handleChangeActive = (event) => {
+        setActive(event.target.checked);
+    };
+
+    const handleSubmit = async event =>{
+        //event.preventDefault();
+        const device = {
+            name,
+            model,
+            type,
+            active,
+            company
+        }
+        const response = await api.post('/api/devices',device);
+        if(response.data){
+            setOpenAlert(true);
+        }
+    }
+
 
     const devicesLabel = {
         title : 'Dispositivos',
@@ -41,23 +78,33 @@ export default function Devices(){
         company : 'Empresa',
         type : 'Tipo',
         model : 'Modelo',
-        active : 'Ativo'
+        active : 'Ativo',
+        snack : 'Dispositivo adicionado com sucesso.'
     }
 
     const classes = useStyles();
 
     return(
         <Container maxWidth='md'>
+           
+            <Snackbar open={openAlert} autoHideDuration={3000} onClose={handleCloseSnack}>
+                <Alert onClose={handleCloseSnack} severity="success">
+                    {devicesLabel.snack}
+                </Alert>
+            </Snackbar>
+
             <DashnoardLayout/>
             <CssBaseline/>
                 <Paper className={classes.paper}>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <Grid container spacing={4}>
                             <Grid item xs={12} align='center'>
                                 <Typography variant='h4'>{devicesLabel.title}</Typography>
                             </Grid>
                             <Grid item  xs={12} sm={6}>
                                 <TextField
+                                onChange={event => setName(event.target.value)}
+                                value={name}
                                 label={devicesLabel.name}
                                 type='text'
                                 fullWidth
@@ -65,6 +112,8 @@ export default function Devices(){
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
+                                    onChange={event => setCompany(event.target.value)}
+                                    value={company}
                                     className=''
                                     label={devicesLabel.company}
                                     type='text'
@@ -75,6 +124,8 @@ export default function Devices(){
                                 <FormControl className={classes.formControl}>
                                     <InputLabel id='type'>{devicesLabel.type}</InputLabel>
                                     <Select
+                                        onChange={event => setType(event.target.value)}
+                                        value={type}
                                         className={classes.selectEmpty}
                                         labelId='type'
                                         type='text'
@@ -91,7 +142,7 @@ export default function Devices(){
                                 control={
                                     <Switch
                                     checked={active.status}
-                                    onChange={handleChange}
+                                    onChange={handleChangeActive}
                                     color="primary"
                                     name="active"
                                     inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -101,7 +152,8 @@ export default function Devices(){
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    className=''
+                                    onChange={event => setModel(event.target.value)}
+                                    value={model}
                                     label={devicesLabel.model}
                                     type='text'
                                     fullWidth
@@ -110,12 +162,12 @@ export default function Devices(){
                         </Grid>
                         <Grid container className={classes.footer}>
                             <Grid item xs={6} sm={2}>
-                                <Button color='primary' variant='contained'>Salvar</Button>
+                                <Button type='submit' color='primary' variant='contained'>Salvar</Button>
                             </Grid>
                         </Grid>
                     </form>
                 </Paper>
-                {console.log(active)}
+                {console.log(active,name,company,type,model)}
         </Container>
     )
 }

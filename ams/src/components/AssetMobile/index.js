@@ -53,7 +53,7 @@ export default class AssetMobile extends Component {
   }
 
   async loadOptions(){
-    const response = await amsApi.get('/api/assetrecord');
+    const response = await amsApi.get('/api/devices');
     this.setState({options : response.data});
   }
 
