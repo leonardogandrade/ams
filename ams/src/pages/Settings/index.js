@@ -98,7 +98,7 @@ export default function Settings(){
       <Button variant="contained" 
               startIcon={<Commute/>} 
               style={{paddingLeft: 13, textDecoration: 'none'}}
-              component={Link} to=''>
+              component={Link} to='/order'>
         {title.vehicles}
       </Button>
       <Button variant="contained" 

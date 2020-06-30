@@ -6,7 +6,7 @@ const DevicesSchema = mongoose.Schema({
     active : Boolean,
     type : String,
     model : String,
-    delivery : [{
+    order : [{
         code : String,
         description : String,
         destination : {
@@ -14,8 +14,14 @@ const DevicesSchema = mongoose.Schema({
             lon : String
         },
         deadline : Date,    //Stablished time to deliver
-        checkin : Date,     //Time which the package arrived at shipping company
-        checkout : Date     //Time which delivery was made
+        checkin : {         //Time which the package arrived at shipping company
+            type : Date,
+            default : Date.now
+        },     
+        checkout : {
+            type : Date,
+            default : Date.now, //Time which order was made
+        }
     }]
 },{timestamps : true});
 

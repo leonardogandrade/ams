@@ -47,7 +47,7 @@ export default function Devices(){
 
     const handleCloseSnack = (event, reason) => {
         if (reason === 'clickaway') {
-        return;
+            return;
         }
         setOpenAlert(false);
     };
@@ -57,7 +57,7 @@ export default function Devices(){
     };
 
     const handleSubmit = async event =>{
-        //event.preventDefault();
+        event.preventDefault();
         const device = {
             name,
             model,
@@ -68,6 +68,11 @@ export default function Devices(){
         const response = await api.post('/api/devices',device);
         if(response.data){
             setOpenAlert(true);
+            setName('');
+            setCompany('');
+            setType('');
+            setModel('');
+            setActive(true);
         }
     }
 

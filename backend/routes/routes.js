@@ -29,6 +29,8 @@ routes.post('/devices/:code',DevicesController.addDeliver);
 routes.post('/devicestype',DevicesTypeController.create);
 routes.get('/devicestype',DevicesTypeController.listAll);
 
+//####### Order ROUTES #######
+routes.post('/order/:id',DevicesController.orderByDevice);
 
 //####### USER ROUTES #######
 routes.post('/user',UserController.Create);

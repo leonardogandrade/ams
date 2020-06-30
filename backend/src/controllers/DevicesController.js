@@ -13,16 +13,22 @@ module.exports = {
     async addDeliver(req,res){
         const deviceCode = req.params.code;
         const {code,description,destination,deadline,checkin,checkout} = req.body;
-        const {delivery} = await Devices.findById(deviceCode);
+        const {order} = await Devices.findById(deviceCode);
 
-        delivery.push({code,description,destination,deadline,checkin,checkout});
+        order.push({code,description,destination,deadline,checkin,checkout});
         
         const response = await Devices.findOneAndUpdate(deviceCode,{
-            delivery : delivery
+            order : order
         });
         
         console.log(response);
         res.json(response);
+    },
+    async orderByDevice(req,res){
+        const deviceID = req.params.id;
+        const response = await Devices.findOne({'name' : {$eq : deviceID}})
+        const {order} = response;
+        res.json(order);
     },
     async listAll(req,res){
         const response = await Devices.find();
