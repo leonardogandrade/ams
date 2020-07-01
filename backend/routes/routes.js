@@ -23,7 +23,6 @@ routes.get('/assetError',AssetLogController.countErrors);
 //####### Devices ROUTES #######
 routes.post('/devices',DevicesController.create);
 routes.get('/devices',DevicesController.listAll);
-routes.post('/devices/:code',DevicesController.addDeliver);
 
 //####### DevicesType ROUTES #######
 routes.post('/devicestype',DevicesTypeController.create);
@@ -31,6 +30,7 @@ routes.get('/devicestype',DevicesTypeController.listAll);
 
 //####### Order ROUTES #######
 routes.post('/order/:id',DevicesController.orderByDevice);
+routes.post('/updateorder/:devname',DevicesController.updateOrder);
 
 //####### USER ROUTES #######
 routes.post('/user',UserController.Create);

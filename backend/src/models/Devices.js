@@ -9,6 +9,7 @@ const DevicesSchema = mongoose.Schema({
     order : [{
         code : String,
         description : String,
+        destinationAddress : String,
         destination : {
             lat : String,
             lon : String

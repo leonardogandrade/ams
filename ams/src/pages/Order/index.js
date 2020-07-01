@@ -46,43 +46,60 @@ export default function MaterialTableDemo() {
 
     const columns = {
         names : [
+            { title: 'Código', field: 'code' },
             { title: 'Descrição', field: 'description' },
-            { title: 'Check-in', field: 'checkin' },
-            { title: 'Check-out', field: 'checkout' },
-            { title: 'DeadLine', field: 'deadline' },
+            { title: 'Check-in', field: 'checkin', type : 'datetime' },
+            { title: 'Check-out', field: 'checkout', type : 'datetime' },
+            { title: 'DeadLine', field: 'deadline', type : 'datetime'},
+            { title: 'Endereço', field: 'destinationAddress' },
         ]
     };
 
-    const handleSubmit = async event =>{
-        event.preventDefault();
+    const loadData = async () =>{
         const response = await api.post(`/api/order/${deviceName}`);
         let orders = {data : response.data};
         setOrders(orders);
     }
 
+    const handleSubmit = async event =>{
+        event.preventDefault();
+        loadData();
+    }
+
+    const updateOrder = async data =>{
+        await api.post(`/api/updateorder/${deviceName}`,data);
+        loadData();
+    }
+
     const useStyles = makeStyles(theme =>({
         root: {
-            marginLeft : -5,
-           padding : theme.spacing(2),
-           margin  : theme.spacing(0)
+            marginLeft : theme.spacing(-11),
+            padding : theme.spacing(2),
+            margin  : theme.spacing(0)
         },
         button : {
             display : 'none'
+        },
+        paper : {
+            marginTop : theme.spacing(-7),
+        },
+        table : {
+            marginLeft : theme.spacing(-10),
+            width : '125%',
         }
     }))
 
     const classes = useStyles();
-    const date = new Date();
 
   return(
       
     <Container component='main' maxWidth='md'>
         <CssBaseline/>
         <DashboardLayout/>
-        <div className={classes.root}>
+        <div className={classes.paper}>
             <Grid container spacing={3}>
                 <form className={classes.root} onSubmit={handleSubmit}>
-                    <Grid item xs>
+                    <Grid item xs={12} sm={12}>
                         <TextField
                             label='Device name' 
                             required
@@ -94,7 +111,7 @@ export default function MaterialTableDemo() {
                             onChange={event => setDeviceName(event.target.value)}
                             name='username'/>
                     </Grid>   
-                    <Grid item xs>
+                    <Grid item>
                         <Button
                             className={classes.button}
                             type='submit'/>
@@ -102,53 +119,60 @@ export default function MaterialTableDemo() {
                 </form>
             </Grid>
 
-            <Grid>
-                <MaterialTable
-                    icons={tableIcons}
-                    title="Editable Example"
-                    columns={columns.names}
-                    data={orders.data}
-                    editable={{
-                        onRowAdd: (newData) =>
-                        new Promise((resolve) => {
-                            setTimeout(() => {
-                            resolve();
-                            setOrders((prevState) => {
-                                const data = [...prevState.data];
-                                data.push(newData);
-                                return { ...prevState, data };
-                            });
-                            }, 600);
-                        }),
-                        onRowUpdate: (newData, oldData) =>
-                        new Promise((resolve) => {
-                            setTimeout(() => {
-                            resolve();
-                            if (oldData) {
-                                        setOrders((prevState) => {
-                                const data = [...prevState.data];
-                                data[data.indexOf(oldData)] = newData;
-                                return { ...prevState, data };
+            <div className={classes.table}>
+                <Grid item xs={12}>
+                    <MaterialTable
+                        icons={tableIcons}
+                        title="Deliveries"
+                        columns={columns.names}
+                        data={orders.data}
+                        editable={{
+                            onRowAdd: (newData) =>
+                            new Promise((resolve) => {
+                                setTimeout(() => {
+                                resolve();
+                                setOrders((prevState) => {
+                                    const data = [...prevState.data];
+                                    data.push(newData);
+                                    updateOrder(data);
+                                    return { ...prevState, data };
                                 });
-                            }
-                            }, 600);
-                        }),
-                        onRowDelete: (oldData) =>
-                        new Promise((resolve) => {
-                            setTimeout(() => {
-                            resolve();
-                            setOrders((prevState) => {
-                                const data = [...prevState.data];
-                                data.splice(data.indexOf(oldData), 1);
-                                return { ...prevState, data };
-                            });
-                            }, 600);
-                        }),
-                    }}
-                />
-            </Grid>
+                                }, 600);
+                            }),
+                            onRowUpdate: (newData, oldData) =>
+                            new Promise((resolve) => {
+                                setTimeout(() => {
+                                resolve();
+                                if (oldData) {
+                                    setOrders((prevState) => {
+                                    const data = [...prevState.data];
+                                    data[data.indexOf(oldData)] = newData;
+                                    //console.log(data);
+                                    updateOrder(data);
+                                    return { ...prevState, data };
+                                    });
+                                }
+                                }, 600);
+                            }),
+                            onRowDelete: (oldData) =>
+                            new Promise((resolve) => {
+                                setTimeout(() => {
+                                resolve();
+                                setOrders((prevState) => {
+                                    const data = [...prevState.data];
+                                    data.splice(data.indexOf(oldData), 1);
+                                    console.log(oldData._id);
+                                    updateOrder(data);
+                                    return { ...prevState, data };
+                                });
+                                }, 600);
+                            }),
+                        }}
+                    />
+                </Grid>
+            </div>
+            
         </div>
-        {console.log(date)}
         </Container>
   )
 }
