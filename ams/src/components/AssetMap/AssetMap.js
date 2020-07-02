@@ -79,7 +79,7 @@ export default class AssetMap extends Component {
 
   render() {
     return (
-      <Map  className="map"  style={{height : '100%'}} center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
+      <Map  className="map"  style={{height : '530px'}} center={this.state.centerMap} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

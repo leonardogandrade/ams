@@ -17,6 +17,7 @@ import AssetMobileDashboard from './pages/AssetMobileDashboard';
 import Settings from './pages/Settings';
 import Devices from './pages/Devices';
 import Order from './pages/Order';
+import Tracking from './pages/Tracking';
 
 const PrivateRoute = ({component : Component, ...rest}) => (
     <Route 
@@ -49,6 +50,7 @@ function Routes(){
             <PrivateRoute path='/settings' component={Settings}/>
             <PrivateRoute path='/devices' component={Devices}/>
             <PrivateRoute path='/order' component={Order}/>
+            <PrivateRoute path='/tracking/:assetName/:orderID' component={Tracking}/>
         </Switch>
     )
 };

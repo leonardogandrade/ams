@@ -16,12 +16,10 @@ const DevicesSchema = mongoose.Schema({
         },
         deadline : Date,    //Stablished time to deliver
         checkin : {         //Time which the package arrived at shipping company
-            type : Date,
-            default : Date.now
+            type : Date,    
         },     
-        checkout : {
+        checkout : {        //Time which order was made
             type : Date,
-            default : Date.now, //Time which order was made
         }
     }]
 },{timestamps : true});

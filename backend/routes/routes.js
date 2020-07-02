@@ -32,6 +32,9 @@ routes.get('/devicestype',DevicesTypeController.listAll);
 routes.post('/order/:id',DevicesController.orderByDevice);
 routes.post('/updateorder/:devname',DevicesController.updateOrder);
 
+//####### Tracking ROUTES #######
+routes.get('/tracking/:deviceName/:orderID',DevicesController.trackingOrder);
+
 //####### USER ROUTES #######
 routes.post('/user',UserController.Create);
 //routes.post('/login/',UserController.signIn);

@@ -29,10 +29,11 @@ module.exports = {
     //Creating asset record.
     async Create(req,res){
         try{
-            const payload = req.body
+            const payload = req.body;
+            console.log(payload);
             await AssetLog.create(req.body);
             req.io.emit('assetPost',payload);
-
+            
             // if(req.body.value > 10){
                 
             //     myClient.sendNotification(new OneSignal.Notification({      

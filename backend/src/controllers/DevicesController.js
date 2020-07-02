@@ -7,8 +7,26 @@ const Devices = mongoose.model('Devices');
 module.exports = {
     async create(req,res){
         const payload = await Devices.create(req.body);
-        console.log(payload._id);
         res.json(payload._id);
+    },
+
+    async trackingOrder(req,res){
+        const devName = req.params.deviceName;
+        const orderID = req.params.orderID;
+        let orderData;
+
+        const {_id : devID} = await Devices.findOne({'name' : {$eq : devName}})
+
+        const {order} = await Devices.findById(devID);
+
+        order.filter((value,index)=>{
+            if(value.code == orderID){
+                orderData = value;
+            }
+        });
+        
+        console.log(orderData);
+        res.json(orderData);
     },
 
     async updateOrder(req,res){

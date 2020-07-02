@@ -132,6 +132,9 @@ export default function MaterialTableDemo() {
                                 setTimeout(() => {
                                 resolve();
                                 setOrders((prevState) => {
+                                    if(prevState === null){
+                                        prevState = {data : ''}
+                                    }
                                     const data = [...prevState.data];
                                     data.push(newData);
                                     updateOrder(data);

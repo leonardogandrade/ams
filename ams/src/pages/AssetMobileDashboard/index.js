@@ -7,7 +7,7 @@ export default function AssetMobileDashboard({assets}) {
     <div>
       <DashboardLayout/>
       <div className='dashboardMap'>
-        <AssetMobile/>
+          <AssetMobile/>
       </div>
     </div>
     
