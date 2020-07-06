@@ -5,8 +5,10 @@
     height: 540px;
     width: 500px;
     background: #3F51B5;
+    margin : auto;
     padding-top: 30px;
     margin-top: 10px;
+    
 }
 
 .paper .main-container-tracking {

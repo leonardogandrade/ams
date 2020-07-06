@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
-const { create, findByIdAndDelete, findByIdAndRemove, findById } = require('../models/Devices');
-//const Devices = require('../models/Devices');
-const { listAll } = require('./UserController');
 const Devices = mongoose.model('Devices');
+const Mail = require('./Mail');
+require('dotenv').config();
+
+let tracking_address = `${process.env.APP_ADDRESS}/tracking/car_04/delivery10001`
+let contact = 'general.andrade@gmail.com'
 
 module.exports = {
     async create(req,res){
@@ -32,7 +34,12 @@ module.exports = {
     async updateOrder(req,res){
         const deviceName = req.params.devname;
         const updatedData = req.body;
-        
+        updatedData.filter((data)=>{
+            switch(data.checkout !== null){
+                case true : Mail.sendNotification(data.contact,`${process.env.APP_ADDRESS}/tracking/${deviceName}/${data.code}`,`AMS - Acompanhe seu pedido - ${data.code}`)
+                    break;
+            }
+        })
         const response = await Devices.findOneAndUpdate({'name' : deviceName},{order : updatedData});
         res.json(response);
     },

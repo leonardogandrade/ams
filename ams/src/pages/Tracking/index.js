@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker } from 'react-leaflet'
+import {Container} from '@material-ui/core';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import api from '../../services/amsApi';
@@ -75,7 +76,8 @@ export default class AssetMobile extends Component {
 
   render() {
     return (
-      <div className='paper'>
+      <Container component='main' maxWidth='lg' justifyContent='center'>
+        <div className='paper'>
         <div className='main-container-tracking'>
             <Map  className="map"  center={[this.state.lat,this.state.lon]} zoom={this.state.zoom} maxZoom={this.state.maxZoom} minZoom={this.state.minZoom}>
             <TileLayer
@@ -89,7 +91,7 @@ export default class AssetMobile extends Component {
             </Map>
             <div className='footer'>
                 <div className='columns'>
-                    <div className='line'><p>Status:</p><span>{this.state.order.checkout != null ? <CheckCircleIcon style={{color : 'green'}}/> : ''}</span></div>
+                    <div className='line'><p>Status:</p><span>{this.state.order.delivered === true ? <CheckCircleIcon style={{color : 'green'}}/> : ''}</span></div>
                     <div className='line'><p>Código:</p><span>{this.state.order.code}</span></div>
                     <div className='line'><p>Endereço:</p><span>{this.state.order.destinationAddress}</span></div>
                 </div>
@@ -101,6 +103,7 @@ export default class AssetMobile extends Component {
             </div>
         </div>
       </div>
+      </Container>
     )
   }
 }

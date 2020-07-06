@@ -47,7 +47,9 @@ export default function MaterialTableDemo() {
     const columns = {
         names : [
             { title: 'Código', field: 'code' },
+            { title: 'Entregue', field: 'delivered', type : 'boolean' },
             { title: 'Descrição', field: 'description' },
+            { title: 'Contato', field: 'contact' },
             { title: 'Check-in', field: 'checkin', type : 'datetime' },
             { title: 'Check-out', field: 'checkout', type : 'datetime' },
             { title: 'DeadLine', field: 'deadline', type : 'datetime'},

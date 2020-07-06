@@ -10,6 +10,8 @@ const DevicesSchema = mongoose.Schema({
         code : String,
         description : String,
         destinationAddress : String,
+        contact : String,
+        delivered : Boolean,
         destination : {
             lat : String,
             lon : String
