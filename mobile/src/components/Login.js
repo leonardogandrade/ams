@@ -8,7 +8,7 @@ import {
 
 
 import AsyncStorage from '@react-native-community/async-storage';
-import {IsLogged} from '../services/Authentication';
+//import {IsLogged} from '../services/Authentication';
 
 import {Dimensions } from "react-native";
 const Logo = require('../img/logo.png');
@@ -17,7 +17,7 @@ const screenHeight = Math.round(Dimensions.get('window').height);
 
 import api from '../services/api';
 
-export default function Login(){
+export default function Login({navigation}){
 const [username,setUser] = useState('');
 const [password,setPasswd] = useState('');
 
@@ -35,10 +35,11 @@ async function Login(){
         password
     });
    if(response.data.token){
-       //StoreLogin(response.data.token);
+       StoreLogin(response.data.token);
+       navigation.navigate('Dashboard');
        //AsyncStorage.clear();
        //console.log(AsyncStorage.getItem('@token_Key'));
-       IsLogged();
+       //IsLogged();
    }
 }
 

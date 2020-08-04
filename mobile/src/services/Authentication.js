@@ -12,7 +12,6 @@ const IsLogged = async () =>{
 const Logout = async () =>{
     try{
         await AsyncStorage.clear();
-       
     }catch(err){
 
     }

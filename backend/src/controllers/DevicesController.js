@@ -35,9 +35,8 @@ module.exports = {
         const deviceName = req.params.devname;
         const updatedData = req.body;
         updatedData.filter((data)=>{
-            switch(data.checkout !== null){
-                case true : Mail.sendNotification(data.contact,`${process.env.APP_ADDRESS}/tracking/${deviceName}/${data.code}`,`AMS - Acompanhe seu pedido - ${data.code}`)
-                    break;
+            if((data.checkout != null) && !data.delivered){
+                Mail.sendNotification(data.contact,`${process.env.APP_ADDRESS}/tracking/${deviceName}/${data.code}`,`AMS - Acompanhe seu pedido - ${data.code}`)
             }
         })
         const response = await Devices.findOneAndUpdate({'name' : deviceName},{order : updatedData});
