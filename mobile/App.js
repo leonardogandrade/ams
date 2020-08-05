@@ -6,6 +6,7 @@ import {
   Caption,
   Drawer,
 } from 'react-native-paper';
+import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
@@ -14,12 +15,31 @@ import {createDrawerNavigator,DrawerItem,DrawerItemList,DrawerContentScrollView}
 
 import Main from './src/components/Main';
 import Login from './src/components/Login';
+import Settings from './src/components/Settings';
 import {Logout,IsLogged} from './src/services/Authentication';
 
 const Stack = createStackNavigator();
 const DrawerTab = createDrawerNavigator();
 
 function CustomDrawerContent({ navigation }) {
+  const[name,setName] = useState('');
+  const[username,setUsername] = useState('');
+
+  async function getData(){
+    
+  }
+
+  useEffect(()=>{
+    const name_ = AsyncStorage.getItem('@name_Key');
+    const username_ = AsyncStorage.getItem('@username_Key');
+    name_.then(name =>{
+      setName(name);
+    })
+    username_.then(username =>{
+      setUsername(username);
+    })
+  })
+  
   return (
     <>
     <DrawerContentScrollView>
@@ -28,8 +48,8 @@ function CustomDrawerContent({ navigation }) {
           icon={({ color, size }) => (
             <Icon name="account-circle" color={color} size={90} />
           )}/>
-          <Title style={styles.title}>Leonardo Gerheim</Title>
-          <Caption style={styles.caption}>@leonardogandrade</Caption>
+          <Title style={styles.title}>{name}</Title>
+          <Caption style={styles.caption}>{username}</Caption>
         </View>
 
         <Drawer.Section>
@@ -37,15 +57,15 @@ function CustomDrawerContent({ navigation }) {
                 icon={({ color, size }) => (
                   <Icon name="home" color={color} size={size} />
                 )}
-                label="Home"
-                onPress={() =>  {alert('Home')}}
+                label="Principal"
+                onPress={() =>  navigation.navigate('Main')}
           />
           <DrawerItem
                 icon={({ color, size }) => (
                   <Icon name="cog" color={color} size={size} />
                 )}
                 label="Configurações"
-                onPress={() =>  alert('Configurações')}
+                onPress={() =>  navigation.navigate('Settings')}
           />
         </Drawer.Section>
         
@@ -57,6 +77,7 @@ function CustomDrawerContent({ navigation }) {
                 label="Sair"
                 onPress={() =>  {
                   Logout();
+                  navigation.closeDrawer();
                   navigation.push('Login');
                 }}
           />
@@ -67,10 +88,18 @@ function CustomDrawerContent({ navigation }) {
   );
 }
 
-function Root(){
+function MainScreen(){
   return(
   <DrawerTab.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
       <DrawerTab.Screen name='Main' component={Main} />      
+  </DrawerTab.Navigator>
+  )
+}
+
+function SettingsScreen(){
+  return(
+  <DrawerTab.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      <DrawerTab.Screen name='Settings' component={Settings} />      
   </DrawerTab.Navigator>
   )
 }
@@ -87,7 +116,8 @@ export default function App() {
   <NavigationContainer>
     <Stack.Navigator> 
       <Stack.Screen options={{headerShown : false}} name='Login' component={Login}/>
-      <Stack.Screen options={{headerShown : false}} name='Dashboard' component={Root}/>
+      <Stack.Screen options={{headerShown : false}} name='Dashboard' component={MainScreen}/>
+      <Stack.Screen options={{headerShown : false }} name='Settings' component={SettingsScreen}/>
     </Stack.Navigator>
   </NavigationContainer>
   </>

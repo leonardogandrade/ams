@@ -21,9 +21,11 @@ export default function Login({navigation}){
 const [username,setUser] = useState('');
 const [password,setPasswd] = useState('');
 
-async function StoreLogin(token){
+async function StoreLogin(token,name,username){
     try{
         await AsyncStorage.setItem('@token_Key',token);
+        await AsyncStorage.setItem('@name_Key',name);
+        await AsyncStorage.setItem('@username_Key',username);
     }catch(err){
 
     }
@@ -35,10 +37,10 @@ async function Login(){
         password
     });
    if(response.data.token){
-       StoreLogin(response.data.token);
+       StoreLogin(response.data.token,response.data.name,response.data.username);
        navigation.navigate('Dashboard');
        //AsyncStorage.clear();
-       //console.log(AsyncStorage.getItem('@token_Key'));
+       //console.log(AsyncStorage.getItem('@name_Key'));
        //IsLogged();
    }
 }
@@ -85,8 +87,7 @@ const styles = StyleSheet.create({
     marginTop : screenHeight * 0.15
   },
   textInput : {
-
-    backgroundColor : '#f1f1f1',
+    backgroundColor : '#dddddd',
     borderRadius : 5,
     marginTop : 10,
   },
