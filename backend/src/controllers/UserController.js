@@ -54,7 +54,12 @@ module.exports = {
 
         if(response !== null ){
             token = generateToken(response._id);
-            return res.send({token});
+            return res.send(
+                {
+                    token,
+                    name : response.name,
+                    username : response.username
+                });
         }else
             return res.send({error : 'user doesnt exist.'});
     }

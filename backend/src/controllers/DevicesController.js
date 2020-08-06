@@ -50,6 +50,35 @@ module.exports = {
         res.json(order);
     },
 
+    async orderByOrderID(req,res){
+        const deviceID = req.query.dv;
+        const orderID =  req.query.ord;
+        const response = await Devices.findOne({'name' : {$eq : deviceID}})
+        const {order} = response
+        const order_ = order.filter((order) =>{
+            return order.code === orderID
+        });
+        res.json(order_);
+    },
+    async updateOrderByOrderID(req,res){
+        const deviceID = req.query.dv;
+        const orderID =  req.query.ord;
+        const payload = req.body;
+        const response = await Devices.findOne({'name' : {$eq : deviceID}})
+        const {order} = response
+        let orderIndexToUpdate;
+
+        order.filter((order,index) =>{
+            if(order.code === orderID){
+                orderIndexToUpdate = index;
+            }
+        });
+        
+        order[orderIndexToUpdate] = payload;
+        const updatedOrderArray = await Devices.findOneAndUpdate({'name' : deviceID},{order});
+        res.json(updatedOrderArray);
+    },
+
     async listAll(req,res){
         const response = await Devices.find();
         console.log(response);

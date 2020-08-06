@@ -11,12 +11,25 @@ export default function Main({navigation}){
     const [order,setOrder] = useState({});
     const [error,setError] = useState('');
     const [receivedBy,setReceivedBy] = useState('');
-    const [position,setPosition] = useState({
-        lat : 0,
-        lon : 0,
-    });
+    const [position,setPosition] = useState({});
 
-    const postLocation = async () => {
+    // const postLocation = async () => {
+    //     await api.post('/login/asset',{
+    //         "mac" : "aaa1166",
+    //         "name" : "Bahia",
+    //         "type" : "car_leo",
+    //         "value" : 8,
+    //         "status" : "ok",
+    //         "active" : 1,
+    //         "coord" : 
+    //             {
+    //                 lat : position.lat,
+    //                 lon : position.lon
+    //             }
+    //     });
+    // }
+
+    const postLocation = async (lat,lon) => {
         await api.post('/login/asset',{
             "mac" : "aaa1166",
             "name" : "Bahia",
@@ -26,31 +39,49 @@ export default function Main({navigation}){
             "active" : 1,
             "coord" : 
                 {
-                    lat : position.lat,
-                    lon : position.lon
+                    lat,
+                    lon
                 }
         });
     }
 
-    const heartBeat = () =>{
-        Geolocation.getCurrentPosition(
-            position => {
-                setError('');
-                setPosition({
-                    lat : position.coords.latitude,
-                    lon : position.coords.longitude
-                });
-            },
-            e => setError(e.message)
-        );
-        postLocation();
+    // const heartBeat = () =>{
+    //     Geolocation.getCurrentPosition(
+    //         position => {
+    //             setError('');
+    //             setPosition({
+    //                 lat : position.coords.latitude,
+    //                 lon : position.coords.longitude
+    //             });
+    //         },
+    //         e => setError(e.message)
+    //     );
+    //     postLocation();
         
+    // }
+
+    var heartBeat = function (options) {
+        return new Promise(function (resolve, reject) {
+          Geolocation.getCurrentPosition(resolve, reject, options);
+        });
     }
 
     useEffect(()=>{
-        // BackgroundTimer.setTimeout(()=>{   
-        //     heartBeat();
-        // },120000);
+        heartBeat().then((position) => {
+            postLocation(position.coords.latitude,position.coords.longitude);       
+        }).catch((err) => {
+            //console.error(err.message);
+        });
+    },[])
+
+    useEffect(()=>{
+        BackgroundTimer.setTimeout(()=>{   
+            heartBeat().then((position) => {
+                postLocation(position.coords.latitude,position.coords.longitude);       
+            }).catch((err) => {
+                //console.error(err.message);
+            });
+        },120000);
     });
 
     const search = async () =>{
@@ -79,12 +110,8 @@ export default function Main({navigation}){
             checkout : order.checkout,
             receivedBy : receivedBy
         }
-        const response = await api.post(`http://localhost:3002/api/orderid?dv=${deviceID}&ord=${orderID}`,payload);
+        const response = await api.post(`/api/orderid?dv=${deviceID}&ord=${orderID}`,payload);
         setOrder(payload);
-    }
-
-    const console_ = () =>{
-        console.log('ola')
     }
 
     return(

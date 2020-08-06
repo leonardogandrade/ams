@@ -30,6 +30,8 @@ routes.get('/devicestype',DevicesTypeController.listAll);
 
 //####### Order ROUTES #######
 routes.post('/order/:id',DevicesController.orderByDevice);
+routes.get('/orderid',DevicesController.orderByOrderID);
+routes.post('/orderid',DevicesController.updateOrderByOrderID); //Update order into order array by orderID
 routes.post('/updateorder/:devname',DevicesController.updateOrder);
 
 //####### Tracking ROUTES #######

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import DashboarLayout from '../DashboardLayout';
 import chartImg from '../../img/charts.png';
-import powerBiImg from '../../img/powerbi.png';
+//import powerBiImg from '../../img/powerbi.png';
 import './index.css';
 
 export default function MiniDrawer() {
@@ -15,9 +15,9 @@ export default function MiniDrawer() {
                 <Link to='/reports'>
                     <img alt='' src={chartImg}/>
                 </Link>
-                <Link to='/ReportsPowerBi'>
+                {/* <Link to='/ReportsPowerBi'>
                     <img alt='' src={powerBiImg}/>
-                </Link>                
+                </Link>                 */}
 
               </div>
         </div>
