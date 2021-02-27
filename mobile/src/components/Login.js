@@ -8,7 +8,7 @@ import {
 
 
 import AsyncStorage from '@react-native-community/async-storage';
-//import {IsLogged} from '../services/Authentication';
+import {IsLogged} from '../services/Authentication';
 
 import {Dimensions } from "react-native";
 const Logo = require('../img/logo.png');

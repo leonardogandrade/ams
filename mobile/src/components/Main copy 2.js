@@ -13,6 +13,22 @@ export default function Main({navigation}){
     const [receivedBy,setReceivedBy] = useState('');
     const [position,setPosition] = useState({});
 
+    // const postLocation = async () => {
+    //     await api.post('/login/asset',{
+    //         "mac" : "aaa1166",
+    //         "name" : "Bahia",
+    //         "type" : "car_leo",
+    //         "value" : 8,
+    //         "status" : "ok",
+    //         "active" : 1,
+    //         "coord" : 
+    //             {
+    //                 lat : position.lat,
+    //                 lon : position.lon
+    //             }
+    //     });
+    // }
+
     const postLocation = async (lat,lon) => {
         await api.post('/login/asset',{
             "mac" : "aaa1166",
@@ -50,16 +66,20 @@ export default function Main({navigation}){
         });
     }
 
+    // useEffect(()=>{
+    //     heartBeat().then((position) => {
+    //         postLocation(position.coords.latitude,position.coords.longitude);
+    //         console.log(position.coords.latitude);       
+    //     }).catch((err) => {
+    //         //console.error(err.message);
+    //     });
+    // },[])
 
     useEffect(()=>{
-        BackgroundTimer.setTimeout(()=>{   
+        setTimeout(()=>{   
             heartBeat().then((position) => {
-                setPosition({
-                    lat : position.coords.latitude,
-                    lon : position.coords.longitude
-                });
                 postLocation(position.coords.latitude,position.coords.longitude);
-                console.log(position.coords.latitude,position.coords.longitude)       
+                alert(position.coords.latitude,position.coords.longitude)       
             }).catch((err) => {
                 console.error(err.message);
             });
