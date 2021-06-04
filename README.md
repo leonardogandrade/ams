@@ -14,7 +14,7 @@
 > This project aimed to provide a system to monitor assets in real time.
 > Divided in three parts:
 * backend NodeJS
-* FrontEnd ReactJS
+* FrontEnd ReactJS 
 * Mobile React Native
 
 ## Backend
