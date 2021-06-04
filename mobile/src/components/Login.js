@@ -20,12 +20,14 @@ import api from '../services/api';
 export default function Login({navigation}){
 const [username,setUser] = useState('');
 const [password,setPasswd] = useState('');
+const [deviceID,setDeviceID] = useState('');
 
-async function StoreLogin(token,name,username){
+async function StoreLogin(token,name,username,deviceID){
     try{
         await AsyncStorage.setItem('@token_Key',token);
         await AsyncStorage.setItem('@name_Key',name);
         await AsyncStorage.setItem('@username_Key',username);
+        await AsyncStorage.setItem('@deviceID_Key',deviceID);
     }catch(err){
 
     }
@@ -37,7 +39,7 @@ async function Login(){
         password
     });
    if(response.data.token){
-       StoreLogin(response.data.token,response.data.name,response.data.username);
+       StoreLogin(response.data.token,response.data.name,response.data.username,deviceID);
        navigation.navigate('Dashboard');
        //AsyncStorage.clear();
        //console.log(AsyncStorage.getItem('@name_Key'));
@@ -66,6 +68,12 @@ async function Login(){
                 placeholder={'senha'} 
                 style={styles.textInput}
                 onChangeText={setPasswd}/>
+            <TextInput
+                secureTextEntry={false}
+                autoCapitalize='characters'
+                placeholder={'placa'} 
+                style={styles.textInput}
+                onChangeText={setDeviceID}/>
             <TouchableOpacity 
                 style={styles.button}
                 onPress={Login}>

@@ -4,6 +4,8 @@ import BackgroundTimer from 'react-native-background-timer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Geolocation from '@react-native-community/geolocation';
 import api from '../services/api';
+import AsyncStorage from '@react-native-community/async-storage';
+import { getIsDrawerOpenFromState } from '@react-navigation/drawer';
 
 export default function Main({navigation}){
     const deviceID = 'aaa1166';
@@ -12,6 +14,7 @@ export default function Main({navigation}){
     const [error,setError] = useState('');
     const [receivedBy,setReceivedBy] = useState('');
     const [position,setPosition] = useState({});
+    const [devId,setDevId] = useState('');
 
     const postLocation = async (lat,lon) => {
         await api.post('/login/asset',{
@@ -50,6 +53,14 @@ export default function Main({navigation}){
         });
     }
 
+    useEffect(()=>{
+        async function getId(){
+            const dev_id = await AsyncStorage.getItem('@deviceID_Key');
+            setDevId(dev_id);
+            console.log(dev_id);
+        }
+        getId();
+    },[]);
 
     useEffect(()=>{
         BackgroundTimer.setTimeout(()=>{   
@@ -68,6 +79,8 @@ export default function Main({navigation}){
 
     const search = async () =>{
         const response = await api.get(`/api/orderid?dv=${deviceID}&ord=${orderID}`);
+        
+        alert(devId);
         const order_ = response.data;
         order_.map(order =>{
             setOrder({
